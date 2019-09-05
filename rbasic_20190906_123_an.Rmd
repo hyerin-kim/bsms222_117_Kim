@@ -328,6 +328,7 @@ length(levels(murders$region))
 ```
 
 6.
+
 ```{r}
 table(murders$region)
 ```
