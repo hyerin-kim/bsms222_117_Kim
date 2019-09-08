@@ -1,0 +1,336 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+install.packages(c("tidyverse","dslabs"))
+library(dslabs)
+library(tidyverse)
+```
+
+
+```{r}
+a <- 1
+b <- 1
+c <- -1
+```
+
+```{r}
+a
+```
+```{r}
+print(a)
+```
+```{r}
+ls()
+```
+
+```{r}
+(-b + sqrt(b^2 - 4*a*c) ) / ( 2*a )
+(-b - sqrt(b^2 - 4*a*c) ) / ( 2*a )
+```
+```{r}
+log(8)
+log(a)
+```
+```{r}
+help("log")
+?log
+```
+
+```{r}
+args(log)
+```
+```{r}
+log(8, base = 2)
+log(x = 8, base = 2)
+log(base = 2, x = 8)
+log(8, 2)
+```
+```{r}
+2 ^ 3
+```
+```{r}
+help("+") 
+```
+
+```{r}
+help(">")
+```
+
+```{r}
+data()
+co2
+pi
+Inf + 1
+```
+
+```{r}
+solution_1 <- (-b + sqrt(b^2 - 4*a*c)) / (2*a)
+solution_2 <- (-b - sqrt(b^2 - 4*a*c)) / (2*a)
+```
+
+```{r}
+a <- 3
+b <- 2
+c <- -1
+(-b + sqrt(b^2 - 4*a*c)) / (2*a)
+(-b - sqrt(b^2 - 4*a*c)) / (2*a)
+```
+
+```{r}
+## Code to compute solution to quadratic equation of the form ax^2 + bx + c
+## define the variables
+a <- 3 
+b <- 2
+c <- -1
+
+## now compute the solution
+(-b + sqrt(b^2 - 4*a*c)) / (2*a)
+(-b - sqrt(b^2 - 4*a*c)) / (2*a)
+```
+
+3.3 exercises
+
+1.
+```{r}
+n<-100
+n*(n+1)/2
+```
+
+```{r}
+n<-100
+x<-seq(1,n)
+sum(x)
+```
+
+2.
+```{r}
+n<-1000
+n*(n+1)/2
+```
+3.
+```{r}
+n <- 1000
+x <- seq(1, n)
+sum(x)
+```
+
+```{r}
+?"sum"
+?"seq"
+```
+
+Q. what do you think the fuctions seq and sum do?
+A. (B. "seq" creates a list of numbers and "sum" adds them up)
+
+4.
+```{r}
+log(sqrt(100),base=10)
+```
+
+5.
+Q. Which of the following will always return the numeric value stored in x?
+
+
+```{r}
+##Number A, suppose x is 3
+log(10^3)
+```
+
+```{r}
+##Number B, suppose x is 3
+log10(3^10)
+```
+```{r}
+##Number C, suppose x is 3
+log(exp(3))
+```
+```{r}
+##Number D, suppose x is 3
+exp(log(3, base = 2))
+```
+So the answer is C.
+
+3.4 Data types
+
+```{r}
+a <- 2
+class(a)
+```
+
+3.5 Data frames
+
+
+```{r}
+library(dslabs)
+data(murders)
+```
+
+```{r}
+class(murders)
+```
+
+3.5.1 Examining an object
+
+```{r}
+str(murders)
+```
+
+```{r}
+head(murders)
+```
+
+3.5.2 The accessor: $
+
+```{r}
+murders$population
+```
+
+```{r}
+names(murders)
+```
+
+3.5.3 Vectors: numerics, characters, and logical
+
+```{r}
+pop <- murders$population
+length(pop)
+```
+
+```{r}
+class(pop)
+```
+
+```{r}
+class(murders$state)
+```
+
+```{r}
+z <- 3 == 2
+z
+class(z)
+```
+```{r}
+?Comparison
+```
+
+```{r}
+class(1L)
+```
+
+3.5.4 Factors
+```{r}
+class(murders$region)
+```
+
+```{r}
+levels(murders$region)
+```
+
+```{r}
+region <- murders$region
+value <- murders$total
+region <- reorder(region, value, FUN = sum)
+levels(region)
+```
+
+3.5.5 List
+
+```{r}
+record <- list("John Doe", 1234, c(95,82,91,97,93), "A")
+names(record) <- c("name", "student_id", "grades", "final_grade")
+record2 <- list("John Doe", 1234, c(95,82,91,97,93), "A")
+```
+
+```{r}
+record
+class(record)
+```
+
+```{r}
+record$student_id
+```
+```{r}
+record[["student_id"]]
+```
+
+3.5.6 Matrices
+
+```{r}
+mat <- matrix(1:12, 4, 3)
+mat
+```
+
+```{r}
+mat[2,3]
+```
+
+```{r}
+mat[2, ]
+```
+```{r}
+mat[, 3]
+```
+
+```{r}
+mat[, 2:3]
+```
+
+```{r}
+mat[1:2, 2:3]
+```
+
+```{r}
+as.data.frame(mat)
+```
+
+```{r}
+data("murders")
+murders[25, 1]
+murders[2:3, ]
+
+```
+
+3.6 Exercises
+
+1.
+```{r}
+library(dslabs)
+data(murders)
+
+str(murders)
+```
+Answer. (C)
+
+2.
+```{r}
+names(murders)
+```
+
+3.
+```{r}
+a <- murders$abb
+class(a)
+```
+4.
+```{r}
+b <- murders[["abb"]]
+identical(a,b)
+```
+5.
+```{r}
+class(murders$region)
+```
+
+```{r}
+length(levels(murders$region))
+```
+
+6.
+
+```{r}
+table(murders$region)
+```
+
+
